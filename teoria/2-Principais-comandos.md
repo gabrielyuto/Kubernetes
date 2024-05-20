@@ -13,3 +13,5 @@ minikube start
 minikube delete
 ```
 
+## Trabalhando com Kubectl
+

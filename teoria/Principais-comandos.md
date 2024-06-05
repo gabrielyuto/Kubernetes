@@ -16,6 +16,7 @@ minikube delete
 ## Trabalhando com Kubectl
 ```bash
 # Criar um pod nginx
+# Tambem cria um replicaset
 kubectl run <name-pod> --image <image>
 
 # Listar pods
@@ -28,7 +29,7 @@ kubectl get pods -o wide
 kubectl describe pod <name-pod>
 
 # Criar um pod a partir de um arquivo.yml
-kubectl create -f <arquivo.yml>
+kubectl create -f <arquivo.yml> --save-config
 
 # Tambem podemos usar esse comando para criar
 kubectl apply -f <arquivo.yml>
@@ -54,7 +55,14 @@ kubectl describe replicaset <nome replicaset>
 
 # --- DEPLOYMENT ---
 # Consultar os deployments
-kubeclt get deployment
+kubectl get deployment
 
+# Para consultar o status do rollout
+kubectl rollout status deployment/<nome-deployment>
 
+# Para consultar o historico de rollout
+kubectl rollout history deployment/<nome-deployment>
+
+# Podemos desfazer o rollout, dando um rollback
+kubectl rollout undo deployment/<nome-deployment>
 ```

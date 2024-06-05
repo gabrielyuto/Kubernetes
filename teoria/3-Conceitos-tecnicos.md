@@ -31,4 +31,26 @@ Um pod do Kubernetes é um conjunto de um ou mais containers Linux®, sendo a me
 ![alt text](/teoria/images/deployment.png)
 
 ### Desfazendo e Atualizando Deployments
-- 
+
+- Durante a atualização de aplicações podem ocorrer problemas, e por isso é importante conseguir desfazer atualizações (rollback).
+- Assim, quando realizamos um deploy com o Deployment do Kubernetes, é disparado um recurso chamado "rollout".
+- A cada execução do rollout é criado uma revisão de publicação. Este processo ajuda o Kubernetes a manter o rastro de publicações da aplicação, fazendo com que facilmente possa ser realizado um "rollback" para qualquer revisão anterior em caso de problemas.
+
+### Estratégias de publicação
+
+- Recreate:
+  - Todas as instâncias são desligadas (shutdown).
+  - E novas instâncias são criadas.
+  - O problema é que o cliente ficara sem acesso a aplicação.
+
+- Rolling Update:
+  - Atualiza uma por uma de cada vez.
+  - Mantem a aplicação sempre disponível (alta disponibilidade).
+  - Estratégia padrão usada pelo Kubernetes.
+
+### Rollback
+
+- Quando temos problemas com a atualização, damos um rollback.
+- Ele irá destruir as instâncias com a atualização e criar novamente instâncias com a versão anterior.
+- Tudo de acordo com a estratégia de atualização.
+
